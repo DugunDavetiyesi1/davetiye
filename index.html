@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>Ayşe Zeynep & Oğuzhan - Özel Düğün Davetiyesi</title>
     <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com"></script>
@@ -746,28 +746,7 @@
         renderGuestName(currentGuest);
         initPetalAndSparkleCanvas();
 
-        // 1. KİLİT ÇÖZÜCÜ (UNLOCK): Kullanıcının ekrana ilk dokunuşunda/tıklamasında AudioContext'i uyandırıyoruz
-        const unlockAudio = () => {
-            try {
-                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-                if (!audioCtx && AudioContextClass) {
-                    audioCtx = new AudioContextClass();
-                }
-                if (audioCtx && audioCtx.state === 'suspended') {
-                    audioCtx.resume();
-                }
-                // Kullanıcı dokunduğu an müzik bayrağını aktif edip çalmayı deniyoruz
-                if (isEnvelopeOpened && !musicPlaying) {
-                    startMusicBox();
-                }
-            } catch (e) {}
-        };
-
-        window.addEventListener('pointerdown', unlockAudio, { once: true });
-        window.addEventListener('touchstart', unlockAudio, { once: true });
-        window.addEventListener('click', unlockAudio, { once: true });
-
-        // Sayfa yüklenir yüklenmez otomatik sekansı başlat
+        // Sayfaya yüklenir yüklenmez animasyonu başlat
         startAutomaticSequence();
     });
 
